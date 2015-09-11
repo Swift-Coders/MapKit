@@ -1,25 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Q5z-2M-1JP">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--World Map-->
+        <scene sceneID="so3-VP-O0F">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Dhv-Xc-AtA" customClass="MapViewController" customModule="MapKit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="srf-DY-9bZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="gLy-7B-bTB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="Fwl-Vd-RX6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3vu-rC-7s6">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dhv-Xc-AtA" id="SMY-oF-cF2"/>
+                                    <outletCollection property="gestureRecognizers" destination="wNn-PZ-ba5" appends="YES" id="rMz-aq-OT6"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3vu-rC-7s6" firstAttribute="leading" secondItem="Fwl-Vd-RX6" secondAttribute="leading" id="SxZ-x9-NSL"/>
+                            <constraint firstItem="3vu-rC-7s6" firstAttribute="bottom" secondItem="gLy-7B-bTB" secondAttribute="top" id="ebq-1J-ph8"/>
+                            <constraint firstItem="3vu-rC-7s6" firstAttribute="top" secondItem="Fwl-Vd-RX6" secondAttribute="top" id="mZv-0q-1Pa"/>
+                            <constraint firstAttribute="trailing" secondItem="3vu-rC-7s6" secondAttribute="trailing" id="w1I-0Z-jbY"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="World Map" id="XCQ-aA-6ke"/>
+                    <connections>
+                        <outlet property="mapView" destination="3vu-rC-7s6" id="z2U-s8-g0L"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jfg-fP-2CI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="wNn-PZ-ba5">
+                    <connections>
+                        <action selector="addPin:" destination="Dhv-Xc-AtA" id="mAi-ad-pdv"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="1289" y="344"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6Qs-4H-L5M">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Q5z-2M-1JP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="e8s-dp-Vly">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Dhv-Xc-AtA" kind="relationship" relationship="rootViewController" id="0GG-wq-zcC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AFt-26-Sj7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="477" y="344"/>
         </scene>
     </scenes>
 </document>
