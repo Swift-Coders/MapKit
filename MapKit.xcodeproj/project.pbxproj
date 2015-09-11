@@ -36,7 +36,6 @@
 		09F369D21BA281F700143A17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09F369D31BA281F700143A17 /* MapKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitTests.swift; sourceTree = "<group>"; };
 		09F369DD1BA285B100143A17 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		09F369DF1BA289CB00143A17 /* TCLocationViewController_Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TCLocationViewController_Swift.swift; path = ../../../../Shared/TCLocationViewController_Swift.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +79,6 @@
 			children = (
 				09F369C11BA281F700143A17 /* Main.storyboard */,
 				09F369DD1BA285B100143A17 /* MapViewController.swift */,
-				09F369DF1BA289CB00143A17 /* TCLocationViewController_Swift.swift */,
 				09F369BB1BA281F700143A17 /* Supporting Files */,
 			);
 			path = MapKit;
