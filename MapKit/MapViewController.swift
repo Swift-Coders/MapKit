@@ -12,7 +12,8 @@ import CoreLocation
 
 class MapViewController: UIViewController {
 
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet private weak var mapView: MKMapView!
+    
     private let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
