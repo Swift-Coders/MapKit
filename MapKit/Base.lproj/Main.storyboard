@@ -33,7 +33,18 @@
                             <constraint firstAttribute="trailing" secondItem="3vu-rC-7s6" secondAttribute="trailing" id="w1I-0Z-jbY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="World Map" id="XCQ-aA-6ke"/>
+                    <navigationItem key="navigationItem" title="World Map" id="XCQ-aA-6ke">
+                        <barButtonItem key="leftBarButtonItem" title="◉" id="fVY-Ho-z4m">
+                            <connections>
+                                <action selector="centerOnUserLocation:" destination="Dhv-Xc-AtA" id="NuE-eg-Ef2"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="UCQ-aw-0iY">
+                            <connections>
+                                <action selector="search:" destination="Dhv-Xc-AtA" id="Icd-zt-Fz7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="3vu-rC-7s6" id="z2U-s8-g0L"/>
                     </connections>

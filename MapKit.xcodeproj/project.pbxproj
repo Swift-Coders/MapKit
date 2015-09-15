@@ -411,6 +411,7 @@
 				09F369D91BA281F700143A17 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		09F369DA1BA281F700143A17 /* Build configuration list for PBXNativeTarget "MapKitTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +420,7 @@
 				09F369DC1BA281F700143A17 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
