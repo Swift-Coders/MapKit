@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MapKit.xcodeproj">
+      location = "self:/Users/yariv/Dropbox/Developer/LearnSwiftLA/MapKit/Maps.xcodeproj">
    </FileRef>
 </Workspace>
