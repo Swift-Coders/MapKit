@@ -55,6 +55,7 @@ class MapViewController: UIViewController {
         }
     }
     
+    // TODO: 7.
     @IBAction func search(sender: UIBarButtonItem) {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
@@ -72,12 +73,6 @@ class MapViewController: UIViewController {
     }
 }
 
-// Note: use enums for tags
-private enum CalloutAction: Int {
-    case Delete = 1
-    case Navigate = 2
-}
-
 // Note: Use extensions for protocols
 
 // MARK:- MKMapViewDelegate
@@ -86,12 +81,15 @@ private enum CalloutAction: Int {
 extension MapViewController: MKMapViewDelegate {
     // Note: Model vs. View in MVC
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        // TODO: 4.
         // Keep the default annotation view for User Location
         guard !annotation.isKindOfClass(MKUserLocation.self) else { return nil }
         
         let reuseIdentifier = "PinView"
         let pinView: MKPinAnnotationView // Note: declare a constant without initialization
         
+        // Advanced code
         // Note: Use defer to prepare the annotation view before it's instantiated
         defer {
             // Prepare the annotation view (color, callout, etc.)
@@ -112,8 +110,7 @@ extension MapViewController: MKMapViewDelegate {
             navigateButton?.sizeToFit()
         }
         
-        // Boilerplate code
-        
+        // TODO: 8.2
         // Note: Use a nested utility functions
         func buttonWithTitle(title: String, type: CalloutAction) -> UIButton {
             let button = UIButton(type: .System)
@@ -123,6 +120,10 @@ extension MapViewController: MKMapViewDelegate {
             return button
         }
         
+        // TODO: 4.1
+        // Boilerplate code
+        
+        // TODO: 5.
         // Initialize the annotation view (dequeue or allocate)
         //
         if let annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier) as? MKPinAnnotationView {
@@ -134,24 +135,32 @@ extension MapViewController: MKMapViewDelegate {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
             pinView.animatesDrop = true
             pinView.canShowCallout = true
-            pinView.draggable = true
-            pinView.rightCalloutAccessoryView = buttonWithTitle("❌", type: .Delete)
-            pinView.leftCalloutAccessoryView = buttonWithTitle("🚘", type: .Navigate)
+            pinView.draggable = true // Note: Optional
+            
+            pinView.rightCalloutAccessoryView = buttonWithTitle("❌", type: .Delete) // TODO: 6.
+            pinView.leftCalloutAccessoryView = buttonWithTitle("🚘", type: .Navigate) // TODO: 8.
         }
         return pinView
     }
     
+    // TODO: 8.1
+    // Note: use enums for tags
+    private enum CalloutAction: Int {
+        case Delete = 1
+        case Navigate = 2
+    }
+    
+    // TODO: 6.1
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let action = CalloutAction(rawValue: control.tag) else { return }
+        guard let action = CalloutAction(rawValue: control.tag)
+            , let annotation = view.annotation else { return }
         
         switch action {
         case .Delete:
-            guard let annotation = view.annotation else { return }
-            mapView.removeAnnotation(annotation)
+            mapView.removeAnnotation(annotation) // TODO: 6.2
             
+            // TODO: 8.3
         case .Navigate:
-            guard let annotation = view.annotation else { return }
-            
             let location = CLLocation(annotation: annotation)
             guard let isWalkingDistance = mapView.userLocation.location?.isWalkingDistanceFromLocation(location) else { return }
             
@@ -169,8 +178,8 @@ extension MapViewController: MKMapViewDelegate {
             else { return }
         
         reverseGeocode(annotation) { placemark in
-            annotation.subtitle = annotation.title
             annotation.title = placemark.name
+            annotation.subtitle = "\(annotation.coordinate.latitude), \(annotation.coordinate.longitude)"
         }
     }
 }
@@ -196,6 +205,7 @@ extension MapViewController: CLLocationManagerDelegate {
 
 // MARK:- UISearchBarDelegate
 
+// TODO: 7.1
 extension MapViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         // Note: use defer to dismiss the search controller even if the guard returns
