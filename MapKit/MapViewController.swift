@@ -11,7 +11,8 @@ import MapKit
 import CoreLocation
 
 class MapViewController: UIViewController {
-
+    
+    // TODO: 1.
     @IBOutlet private weak var mapView: MKMapView!
     
     private let locationManager = CLLocationManager()
@@ -22,11 +23,12 @@ class MapViewController: UIViewController {
         locationManager.delegate = self
     }
     
+    // TODO: 2.
     @IBAction func addPin(gesture: UILongPressGestureRecognizer) {
         guard gesture.state == .Began else { return }
         
-        let tapPoint = gesture.locationInView(mapView) // let vs. var
-        let coordinate = mapView.convertPoint(tapPoint, toCoordinateFromView: mapView)
+        let tapPoint = gesture.locationInView(mapView) // View (MapView) coordinate space
+        let coordinate = mapView.convertPoint(tapPoint, toCoordinateFromView: mapView) // Map (CoreLocation) coordinate space
         
         // Note: Model object - represents data
         let annotation = MKPointAnnotation()
@@ -44,6 +46,7 @@ class MapViewController: UIViewController {
         }
     }
     
+    // Note: Advanced
     @IBAction func centerOnUserLocation(sender: UIBarButtonItem) {
         if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
             mapView.showAnnotations([mapView.userLocation], animated: true)
@@ -79,6 +82,7 @@ private enum CalloutAction: Int {
 
 // MARK:- MKMapViewDelegate
 
+// TODO: 3.
 extension MapViewController: MKMapViewDelegate {
     // Note: Model vs. View in MVC
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -91,9 +95,24 @@ extension MapViewController: MKMapViewDelegate {
         // Note: Use defer to prepare the annotation view before it's instantiated
         defer {
             // Prepare the annotation view (color, callout, etc.)
-            // for example: if annotation == ... then change color
-            pinView.pinColor = .Red
+            let location = CLLocation(annotation: annotation)
+            let navigateButton = pinView.leftCalloutAccessoryView as? UIButton
+            let navigateButtonTitle: String
+            
+            if let result = mapView.userLocation.location?.isWalkingDistanceFromLocation(location)
+                where result
+            {
+                pinView.pinColor = .Green
+                navigateButtonTitle = "🚶"
+            } else {
+                pinView.pinColor = .Red
+                navigateButtonTitle = "🚘"
+            }
+            navigateButton?.setTitle(navigateButtonTitle, forState: .Normal)
+            navigateButton?.sizeToFit()
         }
+        
+        // Boilerplate code
         
         // Note: Use a nested utility functions
         func buttonWithTitle(title: String, type: CalloutAction) -> UIButton {
@@ -116,7 +135,6 @@ extension MapViewController: MKMapViewDelegate {
             pinView.animatesDrop = true
             pinView.canShowCallout = true
             pinView.draggable = true
-            
             pinView.rightCalloutAccessoryView = buttonWithTitle("❌", type: .Delete)
             pinView.leftCalloutAccessoryView = buttonWithTitle("🚘", type: .Navigate)
         }
@@ -134,9 +152,13 @@ extension MapViewController: MKMapViewDelegate {
         case .Navigate:
             guard let annotation = view.annotation else { return }
             
+            let location = CLLocation(annotation: annotation)
+            guard let isWalkingDistance = mapView.userLocation.location?.isWalkingDistanceFromLocation(location) else { return }
+            
             reverseGeocode(annotation) { placemark in
+                let mode = isWalkingDistance ? MKLaunchOptionsDirectionsModeWalking : MKLaunchOptionsDirectionsModeDriving
                 let item = MKMapItem(placemark: MKPlacemark(placemark: placemark))
-                item.openInMapsWithLaunchOptions([MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+                item.openInMapsWithLaunchOptions([MKLaunchOptionsDirectionsModeKey: mode])
             }
         }
     }
@@ -197,5 +219,18 @@ extension MapViewController: UISearchBarDelegate {
             self.mapView.showAnnotations([annotation], animated: true)
             self.mapView.selectAnnotation(annotation, animated: true)
         }
+    }
+}
+
+// MARK:- CLLocation
+extension CLLocation {
+    func isWalkingDistanceFromLocation(location: CLLocation) -> Bool {
+        let walkingDistance: CLLocationDistance = 400
+        
+        return distanceFromLocation(location) <= walkingDistance
+    }
+    
+    convenience init(annotation: MKAnnotation) {
+        self.init(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
     }
 }
