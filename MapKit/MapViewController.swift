@@ -12,15 +12,14 @@ import CoreLocation
 
 class MapViewController: UIViewController {
     
-    // TODO: 1.
-    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var mapView: MKMapView! // TODO: 1.
     
-    private let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager() // TODO: 11
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager.delegate = self
+        locationManager.delegate = self // TODO: 11
     }
     
     // TODO: 2.
@@ -37,7 +36,7 @@ class MapViewController: UIViewController {
         mapView.addAnnotation(annotation)
         mapView.showAnnotations([annotation], animated: true)
         
-        // Note: Optional
+        // TODO: 9
         reverseGeocode(annotation) { placemark in
             annotation.subtitle = annotation.title
             annotation.title = placemark.name
@@ -46,7 +45,7 @@ class MapViewController: UIViewController {
         }
     }
     
-    // Note: Advanced
+    // TODO: 11.
     @IBAction func centerOnUserLocation(sender: UIBarButtonItem) {
         if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
             mapView.showAnnotations([mapView.userLocation], animated: true)
@@ -62,6 +61,7 @@ class MapViewController: UIViewController {
         presentViewController(searchController, animated: true, completion: nil)
     }
     
+    // TODO: 9.1
     // Note: return an optional clousre async with default value
     private func reverseGeocode(annotation: MKAnnotation, completion: (CLPlacemark -> Void)? = nil) {
         let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
@@ -89,7 +89,7 @@ extension MapViewController: MKMapViewDelegate {
         let reuseIdentifier = "PinView"
         let pinView: MKPinAnnotationView // Note: declare a constant without initialization
         
-        // Advanced code
+        // TODO: 9.
         // Note: Use defer to prepare the annotation view before it's instantiated
         defer {
             // Prepare the annotation view (color, callout, etc.)
@@ -111,7 +111,7 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         // TODO: 8.2
-        // Note: Use a nested utility functions
+        // Note: Use a nested utility functions, could also be an extension on UIButton
         func buttonWithTitle(title: String, type: CalloutAction) -> UIButton {
             let button = UIButton(type: .System)
             button.setTitle(title, forState: .Normal)
@@ -120,7 +120,6 @@ extension MapViewController: MKMapViewDelegate {
             return button
         }
         
-        // TODO: 4.1
         // Boilerplate code
         
         // TODO: 5.
@@ -135,7 +134,7 @@ extension MapViewController: MKMapViewDelegate {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
             pinView.animatesDrop = true
             pinView.canShowCallout = true
-            pinView.draggable = true // Note: Optional
+            pinView.draggable = true // TODO: 10.1
             
             pinView.rightCalloutAccessoryView = buttonWithTitle("❌", type: .Delete) // TODO: 6.
             pinView.leftCalloutAccessoryView = buttonWithTitle("🚘", type: .Navigate) // TODO: 8.
@@ -172,7 +171,7 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
     
-    // Note: Optional code, if we have time
+    // TODO: 10.
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
         guard newState == .Ending, let annotation = view.annotation as? MKPointAnnotation
             else { return }
@@ -186,6 +185,7 @@ extension MapViewController: MKMapViewDelegate {
 
 // MARK:- CLLocationManagerDelegate
 
+// TODO: 11.
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         // Note: match multiple values
@@ -233,6 +233,8 @@ extension MapViewController: UISearchBarDelegate {
 }
 
 // MARK:- CLLocation
+
+// TODO: 9.
 extension CLLocation {
     func isWalkingDistanceFromLocation(location: CLLocation) -> Bool {
         let walkingDistance: CLLocationDistance = 400
