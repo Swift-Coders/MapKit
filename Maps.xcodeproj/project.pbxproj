@@ -26,13 +26,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09F369B81BA281F700143A17 /* MapKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		09F369B81BA281F700143A17 /* Maps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09F369BC1BA281F700143A17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09F369BD1BA281F700143A17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09F369C21BA281F700143A17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		09F369C41BA281F700143A17 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		09F369C71BA281F700143A17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		09F369CD1BA281F700143A17 /* MapKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		09F369CD1BA281F700143A17 /* Maps.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Maps.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09F369D21BA281F700143A17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09F369D31BA281F700143A17 /* MapKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitTests.swift; sourceTree = "<group>"; };
 		09F369DD1BA285B100143A17 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -68,8 +68,8 @@
 		09F369B91BA281F700143A17 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				09F369B81BA281F700143A17 /* MapKit.app */,
-				09F369CD1BA281F700143A17 /* MapKitTests.xctest */,
+				09F369B81BA281F700143A17 /* Maps.app */,
+				09F369CD1BA281F700143A17 /* Maps.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,9 +115,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		09F369B71BA281F700143A17 /* MapKit */ = {
+		09F369B71BA281F700143A17 /* Maps */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 09F369D71BA281F700143A17 /* Build configuration list for PBXNativeTarget "MapKit" */;
+			buildConfigurationList = 09F369D71BA281F700143A17 /* Build configuration list for PBXNativeTarget "Maps" */;
 			buildPhases = (
 				09F369B41BA281F700143A17 /* Sources */,
 				09F369B51BA281F700143A17 /* Frameworks */,
@@ -127,14 +127,14 @@
 			);
 			dependencies = (
 			);
-			name = MapKit;
+			name = Maps;
 			productName = MapKit;
-			productReference = 09F369B81BA281F700143A17 /* MapKit.app */;
+			productReference = 09F369B81BA281F700143A17 /* Maps.app */;
 			productType = "com.apple.product-type.application";
 		};
-		09F369CC1BA281F700143A17 /* MapKitTests */ = {
+		09F369CC1BA281F700143A17 /* MapsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 09F369DA1BA281F700143A17 /* Build configuration list for PBXNativeTarget "MapKitTests" */;
+			buildConfigurationList = 09F369DA1BA281F700143A17 /* Build configuration list for PBXNativeTarget "MapsTests" */;
 			buildPhases = (
 				09F369C91BA281F700143A17 /* Sources */,
 				09F369CA1BA281F700143A17 /* Frameworks */,
@@ -145,9 +145,9 @@
 			dependencies = (
 				09F369CF1BA281F700143A17 /* PBXTargetDependency */,
 			);
-			name = MapKitTests;
+			name = MapsTests;
 			productName = MapKitTests;
-			productReference = 09F369CD1BA281F700143A17 /* MapKitTests.xctest */;
+			productReference = 09F369CD1BA281F700143A17 /* Maps.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +156,9 @@
 		09F369B01BA281F700143A17 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = LearnSwiftLA;
 				TargetAttributes = {
 					09F369B71BA281F700143A17 = {
@@ -168,7 +170,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 09F369B31BA281F700143A17 /* Build configuration list for PBXProject "MapKit" */;
+			buildConfigurationList = 09F369B31BA281F700143A17 /* Build configuration list for PBXProject "Maps" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -181,8 +183,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				09F369B71BA281F700143A17 /* MapKit */,
-				09F369CC1BA281F700143A17 /* MapKitTests */,
+				09F369B71BA281F700143A17 /* Maps */,
+				09F369CC1BA281F700143A17 /* MapsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -230,7 +232,7 @@
 /* Begin PBXTargetDependency section */
 		09F369CF1BA281F700143A17 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 09F369B71BA281F700143A17 /* MapKit */;
+			target = 09F369B71BA281F700143A17 /* Maps */;
 			targetProxy = 09F369CE1BA281F700143A17 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -276,6 +278,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -344,7 +347,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MapKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "LSLA.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = Maps;
 			};
 			name = Debug;
 		};
@@ -354,7 +358,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MapKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "LSLA.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = Maps;
 			};
 			name = Release;
 		};
@@ -372,8 +377,9 @@
 				);
 				INFOPLIST_FILE = MapKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MapKit.app/MapKit";
+				PRODUCT_BUNDLE_IDENTIFIER = "LSLA.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = Maps;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Maps.app/Maps";
 			};
 			name = Debug;
 		};
@@ -387,15 +393,16 @@
 				);
 				INFOPLIST_FILE = MapKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MapKit.app/MapKit";
+				PRODUCT_BUNDLE_IDENTIFIER = "LSLA.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = Maps;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Maps.app/Maps";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		09F369B31BA281F700143A17 /* Build configuration list for PBXProject "MapKit" */ = {
+		09F369B31BA281F700143A17 /* Build configuration list for PBXProject "Maps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				09F369D51BA281F700143A17 /* Debug */,
@@ -404,7 +411,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		09F369D71BA281F700143A17 /* Build configuration list for PBXNativeTarget "MapKit" */ = {
+		09F369D71BA281F700143A17 /* Build configuration list for PBXNativeTarget "Maps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				09F369D81BA281F700143A17 /* Debug */,
@@ -413,7 +420,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		09F369DA1BA281F700143A17 /* Build configuration list for PBXNativeTarget "MapKitTests" */ = {
+		09F369DA1BA281F700143A17 /* Build configuration list for PBXNativeTarget "MapsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				09F369DB1BA281F700143A17 /* Debug */,
