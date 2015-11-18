@@ -30,7 +30,7 @@ class MapViewController: UIViewController {
         
         locationManager.delegate = self
         
-        // av1
+        // TODO: av1
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -47,8 +47,7 @@ class MapViewController: UIViewController {
     
     @IBAction private func pickCandidate(gesture: UILongPressGestureRecognizer) {
         guard gesture.state == .Began else { return }
-        performSegueWithIdentifier("PickCandidate", sender: gesture)
-        //performSegueWithIdentifier(.PickCandidate, sender: gesture)
+        performSegueWithIdentifier("PickCandidate", sender: gesture) // TODO: use enum
     }
     
     // Unwind Segue
@@ -65,12 +64,9 @@ class MapViewController: UIViewController {
         let coordinate = mapView.convertPoint(location, toCoordinateFromView: mapView)
         let vote = Vote(candidate: candidate, coordinate: coordinate)
         
-        vote.reverseGeocode { placemark in
-            vote.placemark = placemark
-            vote.subtitle = placemark.name
-            self.mapView.selectAnnotation(vote, animated: true)
-        }
         addVote(vote)
+        
+        // TODO: rg2
     }
     
     private func addVote(vote: Vote) {
@@ -99,8 +95,9 @@ class MapViewController: UIViewController {
     }
     
     private func countVotes<C: CollectionType where C.Generator.Element == Vote>(votes: C, party: Party) -> Int {
-        return votes.filter { $0.candidate.party == party }.count
-        //return votes.reduce(0) { $0 + ($1.candidate.party == party ? 1 : 0) } // another solution
+        // TODO: ct1
+        // TODO: ct2
+        return 0
     }
     
     private func showVoteSummary<C: CollectionType where C.Generator.Element == Vote>(votes: C) {
@@ -133,38 +130,16 @@ class MapViewController: UIViewController {
 
 // MARK:- MKAnnotation
 
-extension MKAnnotation {
-    private func reverseGeocode(completion: (CLPlacemark -> Void)? = nil) {
-        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        
-        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, _) in
-            guard let placemark = placemarks?.first else { return }
-            completion?(placemark)
-        }
-    }
-}
+// TODO: rg1
 
 // MARK:- MKMapViewDelegate
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
-        guard !annotation.isKindOfClass(MKUserLocation.self) else { return nil }
-        guard let vote = annotation as? Vote else { return nil }
-        
-        let reuseIdentifier = "PinView"
-        let pinView: MKPinAnnotationView
-        
-        defer {
-            if #available(iOS 9.0, *) {
-                pinView.pinTintColor = vote.candidate.preferredColor
-            } else {
-                switch vote.candidate.party {
-                case .Democrat: pinView.pinColor = .Purple
-                case .Republican: pinView.pinColor = .Red
-                }
-            }
-        }
+        guard !annotation.isKindOfClass(MKUserLocation.self)
+            , let vote = annotation as? Vote
+            else { return nil }
         
         func buttonWithTitle(title: String, type: CalloutAction) -> UIButton {
             let button = UIButton(type: .System)
@@ -174,21 +149,10 @@ extension MapViewController: MKMapViewDelegate {
             return button
         }
         
-        // Boilerplate
-        //
-        if let annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier) as? MKPinAnnotationView {
-            pinView = annotationView
-            pinView.annotation = annotation
-        } else {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-            pinView.animatesDrop = true
-            pinView.canShowCallout = true
-            pinView.draggable = false
-            
-            pinView.rightCalloutAccessoryView = buttonWithTitle("❌", type: .Delete)
-            pinView.leftCalloutAccessoryView = buttonWithTitle("🚘", type: .Navigate)
-        }
-        return pinView
+        // TODO: pn1
+        // TODO: pv1
+        
+        return nil
     }
     
     private enum CalloutAction: Int {
@@ -199,21 +163,7 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let annotation = view.annotation else { return }
         
-        switch CalloutAction(rawValue: control.tag) {
-        case .Delete?:
-            mapView.removeAnnotation(annotation)
-            
-        case .Navigate?:
-            let location = CLLocation(annotation: annotation)
-            let isWalkingDistance = mapView.userLocation.location?.isWalkingDistanceFromLocation(location) ?? false
-            
-            annotation.reverseGeocode { placemark in
-                let mode = isWalkingDistance ? MKLaunchOptionsDirectionsModeWalking : MKLaunchOptionsDirectionsModeDriving
-                let item = MKMapItem(placemark: MKPlacemark(placemark: placemark))
-                item.openInMapsWithLaunchOptions([MKLaunchOptionsDirectionsModeKey: mode])
-            }
-        default: break
-        }
+        // TODO: co1
     }
 }
 
@@ -249,10 +199,4 @@ extension CLLocation {
     }
 }
 
-// MARK:- SegueHandlerType
-
-extension MapViewController: SegueHandlerType {
-    enum SegueIdentifier: String {
-        case PickCandidate
-    }
-}
+// TODO: sg3

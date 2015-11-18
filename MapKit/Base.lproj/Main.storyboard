@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
-        <!--Voting Map-->
+        <!--Voter Map-->
         <scene sceneID="so3-VP-O0F">
             <objects>
                 <viewController id="Dhv-Xc-AtA" customClass="MapViewController" customModule="Maps" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,7 +37,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Voting Map" id="XCQ-aA-6ke">
+                    <navigationItem key="navigationItem" title="Voter Map" id="XCQ-aA-6ke">
                         <barButtonItem key="leftBarButtonItem" title="◉" id="fVY-Ho-z4m">
                             <connections>
                                 <action selector="centerOnUserLocation:" destination="Dhv-Xc-AtA" id="NuE-eg-Ef2"/>
