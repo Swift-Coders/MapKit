@@ -30,9 +30,7 @@ class MapViewController: UIViewController {
         
         locationManager.delegate = self
         
-        guard #available(iOS 9.0, *) else { return }
-        mapView.showsCompass = true
-        mapView.showsScale = true
+        // av1
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -49,7 +47,8 @@ class MapViewController: UIViewController {
     
     @IBAction private func pickCandidate(gesture: UILongPressGestureRecognizer) {
         guard gesture.state == .Began else { return }
-        performSegueWithIdentifier(.PickCandidate, sender: gesture)
+        performSegueWithIdentifier("PickCandidate", sender: gesture)
+        //performSegueWithIdentifier(.PickCandidate, sender: gesture)
     }
     
     // Unwind Segue

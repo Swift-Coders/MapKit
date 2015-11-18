@@ -49,7 +49,10 @@ let candidates = Set<Candidate>(arrayLiteral:
     Candidate(name: "Mitt Romney", party: .Republican)
 )
 
-class Vote: MKPointAnnotation {
+class Vote: NSObject, MKAnnotation {
+    var title: String?
+    var subtitle: String?
+    var coordinate: CLLocationCoordinate2D
     var candidate: Candidate
     var placemark: CLPlacemark?
     var location: CLLocation {
@@ -58,7 +61,6 @@ class Vote: MKPointAnnotation {
     
     init(candidate: Candidate, coordinate: CLLocationCoordinate2D) {
         self.candidate = candidate
-        super.init()
         self.title = candidate.name
         self.coordinate = coordinate
     }

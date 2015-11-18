@@ -63,7 +63,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1289" y="344"/>
+            <point key="canvasLocation" x="1279" y="344"/>
         </scene>
         <!--Candidates View Controller-->
         <scene sceneID="7z1-3p-cwx">
