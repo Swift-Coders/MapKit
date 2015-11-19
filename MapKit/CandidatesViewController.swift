@@ -24,10 +24,6 @@ class CandidatesViewController: UITableViewController, CandidateContainer {
         candidates.filter{ $0.party == Party.Republican }
     ]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         preferredContentSize = tableView.contentSize
