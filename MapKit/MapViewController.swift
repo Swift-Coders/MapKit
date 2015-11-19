@@ -181,8 +181,10 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let vote = view.annotation else { return }
-        guard let action = CalloutAction(rawValue: control.tag) else { return }
+        guard let vote = view.annotation as? Vote
+            , placemark = vote.placemark
+            , action = CalloutAction(rawValue: control.tag)
+            else { return }
         
         switch action {
         case .Delete:
@@ -192,11 +194,9 @@ extension MapViewController: MKMapViewDelegate {
             let location = CLLocation(annotation: vote)
             let isWalkingDistance = mapView.userLocation.location?.isWalkingDistanceFromLocation(location) ?? false
             
-            vote.reverseGeocode { placemark in
-                let mode = isWalkingDistance ? MKLaunchOptionsDirectionsModeWalking : MKLaunchOptionsDirectionsModeDriving
-                let item = MKMapItem(placemark: MKPlacemark(placemark: placemark))
-                item.openInMapsWithLaunchOptions([MKLaunchOptionsDirectionsModeKey: mode])
-            }
+            let mode = isWalkingDistance ? MKLaunchOptionsDirectionsModeWalking : MKLaunchOptionsDirectionsModeDriving
+            let item = MKMapItem(placemark: MKPlacemark(placemark: placemark))
+            item.openInMapsWithLaunchOptions([MKLaunchOptionsDirectionsModeKey: mode])
         }
     }
 }
